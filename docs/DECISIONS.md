@@ -7,9 +7,9 @@
 
 ---
 
-## 2026-07-05 — Adopción del estándar de documentación de TL-FCCU y MIDI-Scale-Trainer
+## 2026-07-05 — Adopción del estándar de documentación
 
-**Contexto:** los otros dos repos del autor (TL-FCCU y MIDI-Scale-Trainer) ya comparten
+**Contexto:** los demás repos del autor ya comparten
 un estándar: CLAUDE.md con las reglas de sesión, CHANGELOG único en formato Keep a
 Changelog, registro de decisiones append-only con fecha, commits `{add, chg, fix, rmv,
 doc}`, fechas ISO 8601, prosa con los skills `no-ai-slop` y `rossmann-voice`, honestidad
@@ -20,10 +20,10 @@ cuando el código usa 5000.0, y login obligatorio en un catálogo que ya es púb
 
 **Decisión:** se adopta el estándar completo. Documentación canónica en `docs/`
 (`ARCHITECTURE.md`, `ROADMAP.md`, `DECISIONS.md`), `CHANGELOG.md` y `CLAUDE.md` en la
-raíz, y `README-TESTS-WINDOWS.md` se conserva como guía de entorno. Se elige el modelo de
-MIDI-Scale-Trainer (docs/ con DECISIONS) y no el de TL-FCCU (AGENTS.md con Known gaps)
-porque este repo comparte idioma y tipo con el primero: aplicación en español, no
-herramienta de auditoría en inglés. `CONTEXTO_PROYECTO.md` se elimina; su contenido
+raíz, y `README-TESTS-WINDOWS.md` se conserva como guía de entorno. De las dos variantes
+del estándar (carpeta `docs/` con DECISIONS, o un AGENTS.md con sección "Known gaps") se
+elige la primera, la de los proyectos de aplicación en español, que es lo que este repo
+es. `CONTEXTO_PROYECTO.md` se elimina; su contenido
 vigente, corregido contra el código, vive en `docs/ARCHITECTURE.md`.
 
 **Razón:** un documento único que mezcla arquitectura, historial, tutorial y checklist se
