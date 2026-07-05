@@ -6,10 +6,10 @@
 > decir el resultado con números.
 
 Este roadmap se depuró contra el código el 2026-07-05. Las prioridades del documento de
-contexto anterior ya estaban cerradas en su mayoría: los 13 templates existen, RF-02
-tiene su suite (`test_rf02_pagos`, `test-requisitos-funcionales.sh:931`), el catálogo es
-público y la tabla de pedidos guarda dirección y teléfono. Lo que sigue es lo que de
-verdad falta.
+contexto anterior ya estaban cerradas en su mayoría: los templates existen (12 en uso
+tras borrar un duplicado), RF-02 tiene su suite (`test_rf02_pagos`,
+`test-requisitos-funcionales.sh:931`), el catálogo es público y la tabla de pedidos
+guarda dirección y teléfono. Lo que sigue es lo que de verdad falta.
 
 ---
 
@@ -56,15 +56,13 @@ de `CLAUDE.md`).
 
 ## FASE 4: Limpieza de huérfanos
 
-Archivos que están en `main` y no deberían, confirmados el 2026-07-05:
-
-- `keys.rs` (raíz): 2 líneas de chat, no es código.
-- `templates/formulario-factura.html`: duplicado sin uso; el controlador renderiza
-  `facturacion/formulario-factura` (`ControladorFacturacion.java:46`).
-- `src/main/resources/fix-version-null.sql`: parche puntual ya aplicado o por documentar.
-
-Borrarlos es un PR chico, pero es un `rmv` de archivos ajenos al que firma: se confirma
-con el dueño del repo antes de ejecutar.
+**Estado: cerrada el 2026-07-05**, a pedido del dueño del repo en la misma sesión. Se
+borraron 14 archivos: `keys.rs`, `nbactions.xml`, los 10 `.lock` vacíos de
+`src/main/java` y el duplicado `templates/formulario-factura.html`.
+`fix-version-null.sql` no se borró: se movió a `scripts/` para que no viaje adentro del
+JAR, porque sigue siendo el parche para bases creadas antes del `@Version` de
+`Producto`. Detalle en CHANGELOG v1.0 y en la entrada del 2026-07-05 de `DECISIONS.md`
+sobre qué se versiona y qué no.
 
 ---
 

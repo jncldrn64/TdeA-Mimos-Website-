@@ -12,9 +12,18 @@ facturación con IVA colombiano y seguimiento de pedidos. Spring Boot 3.5.7 sobr
 (`pom.xml:30`), persistencia JPA/Hibernate contra MS SQL Server, vistas Thymeleaf con
 Bootstrap. Licencia GPL-3.0.
 
-Los números del árbol, contados el 2026-07-05: 80 archivos Java bajo `src/main/java`,
-13 templates HTML bajo `src/main/resources/templates`, 101 commits en `main` hasta el
-2025-11-13. Todo el código está en español: clases, métodos, variables.
+Los números del árbol, contados el 2026-07-05 tras la limpieza de la Fase 4: 80 archivos
+Java bajo `src/main/java`, 12 templates HTML bajo `src/main/resources/templates`, 101
+commits en `main` hasta el 2025-11-13. Todo el código está en español: clases, métodos,
+variables.
+
+Fuera de los `.java` se versiona lo que la build necesita para reproducirse: `pom.xml`,
+el Maven Wrapper (`mvnw`, `mvnw.cmd`, `.mvn/wrapper/maven-wrapper.properties`, que fija
+Maven 3.9.11 sin binarios porque `distributionType=only-script`), `.gitattributes` (fin
+de línea LF para `mvnw`, CRLF para `.cmd`), `application.properties`, los dos scripts de
+test, `scripts/fix-version-null.sql` y la documentación. La metadata de IDE
+(`nbactions.xml`, `.idea/`, `nbproject/`) y los `target/`/`build/` no: el editor y Maven
+los regeneran, y el `.gitignore` los cubre.
 
 ## 1. Arquitectura hexagonal: la regla que ordena todo
 
@@ -153,11 +162,6 @@ reporta ninguno como resuelto sin una corrida real que lo pruebe.
 - **`costoEnvio` hardcodeado en 5000.0, dos veces.** `ControladorCarrito.java:53` y
   `ControladorCarritoREST.java:123`. Además vive en la capa de controlador, que según §1
   no debería calcular nada.
-- **Template duplicado.** `templates/formulario-factura.html` y
-  `templates/facturacion/formulario-factura.html` coexisten; el controlador usa el
-  segundo (`ControladorFacturacion.java:46`). El de la raíz es un huérfano.
-- **`keys.rs` en la raíz.** Dos líneas de chat ("emanuel: buenas / juanfelipe: si"), no
-  es código. Igual `src/main/resources/fix-version-null.sql`, un parche puntual suelto.
 - **`pom.xml` dice `0.0.1-SNAPSHOT`** mientras el CHANGELOG asigna v1.0. El bump cambia
   el artefacto, así que queda fuera de un PR doc-only; se cierra en el próximo PR de
   código (regla "Versión mostrada" de `CLAUDE.md`).

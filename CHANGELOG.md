@@ -17,7 +17,7 @@ Solo documentación; ninguna línea de Java, HTML ni scripts de test cambió.
   versión única con `pom.xml`).
 - `CHANGELOG.md`: este registro.
 - `docs/ARCHITECTURE.md`: mapa del sistema verificado contra el código real el
-  2026-07-05 (13 controladores, 12 casos de uso, 6 servicios, 23 excepciones, 13
+  2026-07-05 (13 controladores, 12 casos de uso, 6 servicios, 23 excepciones, 12
   templates), incluye la sección "Gaps confirmados leyendo el código".
 - `docs/ROADMAP.md`: el trabajo pendiente real, depurado contra el código. Las
   prioridades del documento de contexto anterior ya estaban cerradas en su mayoría
@@ -31,6 +31,11 @@ Solo documentación; ninguna línea de Java, HTML ni scripts de test cambió.
 
 - `README-TESTS-WINDOWS.md`: reescrito sin emojis ni encabezados decorativos. Los
   comandos, las rutas y la configuración no cambiaron.
+- `fix-version-null.sql` movido de `src/main/resources/` a `scripts/`. Todo lo que está
+  bajo `src/main/resources` viaja adentro del JAR; un parche manual de SQL Server no
+  tiene por qué empaquetarse. El contenido no cambió.
+- `.gitignore`: suma `nbactions.xml` y `nb-configuration.xml` (metadata de NetBeans que
+  el IDE regenera).
 
 ### Removed
 
@@ -39,3 +44,12 @@ Solo documentación; ninguna línea de Java, HTML ni scripts de test cambió.
   `costoEnvio = 0.0` cuando el código usa `5000.0`, y catálogo con login obligatorio
   cuando `ControladorCatalogo` ya es público. Su contenido vigente se corrigió y se movió
   a `docs/ARCHITECTURE.md`; el archivo completo sigue en el historial de git.
+- 14 archivos basura (cierra la Fase 4 del roadmap): `keys.rs` (2 líneas de chat, no era
+  código), `nbactions.xml` (configuración de acciones de NetBeans, el IDE la regenera),
+  los 10 `.lock` vacíos dentro de `src/main/java` (la regla `*.lock` del `.gitignore` ya
+  los cubría, pero git no destrackea lo que se commiteó antes de la regla) y
+  `templates/formulario-factura.html` (duplicado huérfano: el controlador renderiza
+  `facturacion/formulario-factura`, `ControladorFacturacion.java:46`; ningún archivo
+  referenciaba el de la raíz). Al borrar los `.lock` desaparecen del repo las carpetas
+  vacías `web/seguridad/` y `web/servicios/requisitos/no funcionales/`; la segunda ni
+  siquiera era un nombre de paquete Java válido, lleva un espacio.

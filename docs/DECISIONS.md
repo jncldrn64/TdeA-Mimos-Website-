@@ -94,6 +94,40 @@ estándar acaba de adoptar; se deja escrito para que nadie lo cite como implemen
 
 ---
 
+## 2026-07-05 — Qué se versiona además de los .java: el wrapper sí, la metadata de IDE no
+
+**Contexto:** al crear el proyecto le dijeron al autor "pusheá solo los `.java` para
+evitar basura". El consejo era mitad cierto, y el repo terminó con las dos mitades mal:
+le faltó el filtro (entraron `keys.rs` con 2 líneas de chat, `nbactions.xml`, 10 archivos
+`.lock` vacíos dentro de `src/main/java` y un `formulario-factura.html` huérfano) y el
+consejo, tomado literal, habría dejado afuera archivos que la build necesita. Los `.lock`
+además ya estaban cubiertos por la regla `*.lock` del `.gitignore`, pero git no destrackea
+lo que se commiteó antes de la regla.
+
+**Decisión:** se borran los 14 archivos y `fix-version-null.sql` se mueve de
+`src/main/resources/` a `scripts/`. Se quedan versionados, y con motivo: `pom.xml`, el
+Maven Wrapper completo (`mvnw`, `mvnw.cmd`, `.mvn/wrapper/maven-wrapper.properties`),
+`.gitattributes`, `application.properties`, los scripts de test, los templates y
+`static/`. `nbactions.xml` y `nb-configuration.xml` entran al `.gitignore` para que
+NetBeans no los vuelva a colar.
+
+**Razón:** la documentación del Maven Wrapper y las guías estándar (Baeldung, "A Quick
+Guide to Maven Wrapper") dicen commitear `mvnw`, `mvnw.cmd` y `.mvn/`: son lo que permite
+que cualquiera compile con Maven 3.9.11 exacto sin tenerlo instalado, y con
+`distributionType=only-script` no hay ni un binario adentro. `nbactions.xml` es lo
+contrario: configuración de acciones que NetBeans regenera al configurar el run, y las
+plantillas de `.gitignore` para NetBeans lo excluyen. `fix-version-null.sql` no era
+basura (es el parche para bases creadas antes del `@Version` de `Producto`, sin él el
+checkout tira NullPointerException) pero vivía en `src/main/resources`, que se empaqueta
+adentro del JAR; un parche manual de SSMS no tiene por qué viajar en el artefacto. Al
+borrar los `.lock` desaparecen las carpetas vacías `web/seguridad/` y
+`web/servicios/requisitos/no funcionales/`: git no trackea carpetas, y la segunda, con
+espacio en el nombre, nunca fue un paquete Java válido.
+
+**Estado:** vigente.
+
+---
+
 ### Plantilla para nuevas entradas
 
 ```
