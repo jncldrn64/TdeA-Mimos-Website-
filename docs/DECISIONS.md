@@ -7,6 +7,38 @@
 
 ---
 
+## 2026-07-23 — Autorización de escritura de doble repo, y política de referencias cruzadas
+
+**Contexto:** los dos repos Mimos (este y TdeA-Mimos-API-REST) borraron los nombres de
+otros repos de sus DECISIONS para que cada documento se sostenga solo ante un lector sin
+contexto. TL-FCCU, con la misma regla en la mano, hizo lo contrario en su PR #18:
+identificó a MIDI-Scale-Trainer en la primera mención de su `ROADMAP.md` y su `AGENTS.md`.
+Dos decisiones opuestas justificadas con la misma regla, ninguna escrita. Un agente que
+abre un repo nuevo no sabe cuál seguir.
+
+**Decisión:** tres cosas. Primera, esta tarea autoriza escribir en los dos repos Mimos a
+la vez, este y TdeA-Mimos-API-REST, como excepción explícita a "Scope de escritura", que
+manda un solo destino de escritura; TL-FCCU y MIDI-Scale-Trainer quedan solo lectura. La
+excepción vale solo para esta tarea: al cerrarla vuelve a regir un repo por sesión.
+Segunda, se adopta la política de anclar y no borrar referencias cruzadas (ver `CLAUDE.md`,
+"Repos hermanos" y "Referencias cruzadas"). Tercera, un PR doc-only abre su propia sección
+fechada en el CHANGELOG y puede dejarlo por delante de la versión del artefacto (regla en
+`CLAUDE.md`, "CHANGELOG").
+
+**Razón:** los dos repos Mimos comparten el mismo defecto, una referencia cruzada sin
+política declarada, y se arreglan con el mismo texto; hacerlos en una sola tarea con dos PR
+sale más barato y garantiza que queden idénticos. Se ancla en vez de borrar porque borrar
+no alcanza: la cabecera de la v1.0 del CHANGELOG nombra a TL-FCCU y a MIDI-Scale-Trainer, y
+esa historia no se reescribe, así que la referencia sobrevive; mejor que resuelva contra un
+anclaje. No se revierte el borrado previo de DECISIONS (PR #59): la política rige hacia
+adelante y las menciones que quedan en el CHANGELOG ahora resuelven contra "Repos
+hermanos".
+
+**Estado:** vigente. La excepción de scope se cierra al terminar esta tarea; la política de
+referencias cruzadas y la regla de CHANGELOG quedan.
+
+---
+
 ## 2026-07-05 — Adopción del estándar de documentación
 
 **Contexto:** los demás repos del autor ya comparten
