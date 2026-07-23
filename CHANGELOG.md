@@ -4,6 +4,31 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com). Lo más nuevo,
 Todo lo anterior a v1.0 vive en el historial de git (101 commits hasta el 2025-11-13) y no
 se reconstruye acá: reconstruir de memoria fija como hecho lo que nadie verificó.
 
+## v1.1 — 2026-07-23
+
+Doc. Política de referencias cruzadas entre repos y regla de CHANGELOG para PR doc-only.
+Nada de código, HTML ni scripts cambió.
+
+### Added
+
+- `CLAUDE.md`, sección "Repos hermanos": nombra los otros tres repos del autor que
+  comparten este estándar (`TdeA-Mimos-API-REST`, `TL-FCCU`, `MIDI-Scale-Trainer`), una
+  línea cada uno, sin URLs.
+- `CLAUDE.md`, sección "Referencias cruzadas: anclar, no borrar": una mención a otro repo
+  se ancla contra "Repos hermanos" o se identifica inline en su primera aparición; no se
+  borra. Cierra la contradicción entre lo que hicieron los dos Mimos (borrar los nombres)
+  y lo que hizo TL-FCCU en su PR #18 (identificarlos inline).
+- `docs/DECISIONS.md`: entrada del 2026-07-23 con la autorización de escritura de doble
+  repo de esta tarea y las dos políticas.
+
+### Changed
+
+- `CLAUDE.md`, sección "CHANGELOG": un PR doc-only abre su propia sección fechada y puede
+  dejar el CHANGELOG por delante de la versión del artefacto; ese desfase es intencional.
+- `CLAUDE.md` "Versión mostrada" y `docs/ARCHITECTURE.md` §8: el gap de versión se
+  describe contra "la última versión del CHANGELOG", sin clavar el número, que quedó viejo
+  al abrir esta sección v1.1.
+
 ## v1.0 — 2026-07-05
 
 Adopción del estándar de documentación compartido con TL-FCCU y MIDI-Scale-Trainer.

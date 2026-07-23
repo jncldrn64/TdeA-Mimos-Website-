@@ -162,7 +162,8 @@ reporta ninguno como resuelto sin una corrida real que lo pruebe.
 - **`costoEnvio` hardcodeado en 5000.0, dos veces.** `ControladorCarrito.java:53` y
   `ControladorCarritoREST.java:123`. Además vive en la capa de controlador, que según §1
   no debería calcular nada.
-- **`pom.xml` dice `0.0.1-SNAPSHOT`** mientras el CHANGELOG asigna v1.0. El bump cambia
-  el artefacto, así que queda fuera de un PR doc-only; se cierra en el próximo PR de
+- **`pom.xml` dice `0.0.1-SNAPSHOT`**, por detrás de la última versión del CHANGELOG. El
+  bump cambia el artefacto, así que queda fuera de un PR doc-only; un doc-only mueve el
+  CHANGELOG hacia adelante y ese desfase es intencional. Se cierra en el próximo PR de
   código (regla "Versión mostrada" de `CLAUDE.md`).
 - **Tests sin correr en este entorno.** Ver §6.

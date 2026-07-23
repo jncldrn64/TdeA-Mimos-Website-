@@ -18,6 +18,13 @@ orden descendente. Cada sección abre con `## vX.Y — YYYY-MM-DD` y adentro lle
 `### Added`, `### Changed`, `### Fixed` o `### Removed`. Todo lo anterior a v1.0 vive en el
 historial de git (101 commits hasta 2025-11-13) y no se reconstruye de memoria.
 
+Un PR doc-only abre su propia sección fechada en el CHANGELOG. No se pliega dentro de la
+sección de una versión ya publicada: esa sección es historia y no se reescribe. La sección
+nueva lleva la fecha real del cambio en ISO 8601, no la de una versión anterior. Un PR
+doc-only puede dejar la última versión del CHANGELOG por delante de la versión del
+artefacto; ese desfase es intencional y lo cierra el próximo PR de código (ver "Versión
+mostrada").
+
 ## DECISIONS
 
 `docs/DECISIONS.md` es append-only, estilo ADR. No se borra una entrada vieja aunque quede
@@ -89,15 +96,48 @@ y se avisa antes de commitear.
 Este repo (TdeA-Mimos-Website) es el único destino de escritura. Cualquier otro
 repositorio clonado en la sesión es solo lectura y contexto: se copia DESDE él, nunca se
 escribe EN él. No se traen a este repo convenciones de otro (idioma, DECISIONS vs Known
-gaps, formato). Ante duda de en qué repo estás escribiendo, se para y se pregunta.
+gaps, formato). Ante duda de en qué repo estás escribiendo, se para y se pregunta. Una
+tarea puede autorizar por escrito escribir en más de un repo a la vez; esa autorización
+es una excepción con fecha, se anota en `docs/DECISIONS.md` y vale solo para esa tarea.
+
+## Repos hermanos
+
+Este repo comparte el estándar de documentación con otros tres del mismo autor, cada uno
+un repositorio de GitHub separado:
+
+- `TdeA-Mimos-API-REST`: el mismo negocio de Helados Mimos reescrito como API REST en
+  Spring Boot, con un frontend React aparte. Mismo dominio, código y base de datos
+  distintos.
+- `TL-FCCU`: sandbox de auditoría de seguridad para TLauncher, un launcher corriendo bajo
+  firejail. Bash, documentado en inglés.
+- `MIDI-Scale-Trainer`: entrenador de escalas MIDI en el navegador. JavaScript vanilla.
+
+No se ponen URLs acá a propósito: el dueño renombra repos (este ya perdió un guion), y un
+nombre resuelve más tiempo que un link.
+
+## Referencias cruzadas: anclar, no borrar
+
+Una referencia a otro repo se ancla, no se borra. El anclaje es la sección "Repos
+hermanos" de arriba: cualquier mención a `TdeA-Mimos-API-REST`, `TL-FCCU` o
+`MIDI-Scale-Trainer` en cualquier archivo de este repo resuelve contra ella, sin repetir
+la explicación. Identificar el repo inline en su primera mención de un archivo también
+vale, que es como lo hace TL-FCCU en su `ROADMAP.md` y su `AGENTS.md`. Lo que no se hace
+es borrar el nombre para "limpiar": borrar no alcanza. La cabecera de la v1.0 del
+CHANGELOG ya nombra a TL-FCCU y a MIDI-Scale-Trainer, y esa sección es historia que no se
+reescribe, así que la referencia sobrevive igual; mejor que resuelva contra un anclaje a
+dejarla colgando. La historia no se reescribe ni para meter anclajes ni para sacarlos: el
+borrado previo de esos nombres en DECISIONS queda como está, la política rige de acá en
+adelante.
 
 ## Versión mostrada
 
 La versión del artefacto (el `<version>` de `pom.xml`) es fuente única con el CHANGELOG:
-siempre es la última versión del CHANGELOG. Se bumpea en el mismo PR que trae el cambio de
-código que la amerita, nunca en un PR doc-only. Hoy `pom.xml` todavía dice
-`0.0.1-SNAPSHOT`; ese desfase está anotado como gap en `docs/ARCHITECTURE.md` §8 y se
-cierra en el próximo PR de código.
+apunta a la última versión del CHANGELOG. Se bumpea en el mismo PR que trae el cambio de
+código que la amerita, nunca en un PR doc-only. Un PR doc-only sí mueve el CHANGELOG hacia
+adelante (ver la regla de la sección "CHANGELOG"), así que entre uno de esos y el próximo
+PR de código el `pom.xml` queda un paso atrás; ese desfase es intencional. Hoy `pom.xml`
+todavía dice `0.0.1-SNAPSHOT`, por detrás del CHANGELOG; el gap está anotado en
+`docs/ARCHITECTURE.md` §8 y lo cierra el próximo PR de código.
 
 ## Convenciones de código
 
