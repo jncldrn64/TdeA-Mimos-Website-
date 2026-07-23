@@ -100,34 +100,16 @@ gaps, formato). Ante duda de en qué repo estás escribiendo, se para y se pregu
 tarea puede autorizar por escrito escribir en más de un repo a la vez; esa autorización
 es una excepción con fecha, se anota en `docs/DECISIONS.md` y vale solo para esa tarea.
 
-## Repos hermanos
+## Referencias a otros repos
 
-Este repo comparte el estándar de documentación con otros tres del mismo autor, cada uno
-un repositorio de GitHub separado:
-
-- `TdeA-Mimos-API-REST`: el mismo negocio de Helados Mimos reescrito como API REST en
-  Spring Boot, con un frontend React aparte. Mismo dominio, código y base de datos
-  distintos.
-- `TL-FCCU`: sandbox de auditoría de seguridad para TLauncher, un launcher corriendo bajo
-  firejail. Bash, documentado en inglés.
-- `MIDI-Scale-Trainer`: entrenador de escalas MIDI en el navegador. JavaScript vanilla.
-
-No se ponen URLs acá a propósito: el dueño renombra repos (este ya perdió un guion), y un
-nombre resuelve más tiempo que un link.
-
-## Referencias cruzadas: anclar, no borrar
-
-Una referencia a otro repo se ancla, no se borra. El anclaje es la sección "Repos
-hermanos" de arriba: cualquier mención a `TdeA-Mimos-API-REST`, `TL-FCCU` o
-`MIDI-Scale-Trainer` en cualquier archivo de este repo resuelve contra ella, sin repetir
-la explicación. Identificar el repo inline en su primera mención de un archivo también
-vale, que es como lo hace TL-FCCU en su `ROADMAP.md` y su `AGENTS.md`. Lo que no se hace
-es borrar el nombre para "limpiar": borrar no alcanza. La cabecera de la v1.0 del
-CHANGELOG ya nombra a TL-FCCU y a MIDI-Scale-Trainer, y esa sección es historia que no se
-reescribe, así que la referencia sobrevive igual; mejor que resuelva contra un anclaje a
-dejarla colgando. La historia no se reescribe ni para meter anclajes ni para sacarlos: el
-borrado previo de esos nombres en DECISIONS queda como está, la política rige de acá en
-adelante.
+Este repo no describe otros repos. El nombre de otro repo puede aparecer como procedencia
+histórica, de dónde salió una convención, y nunca como información operativa que haga falta
+para trabajar acá. Ningún documento de este repo depende de otro para entenderse. El
+estándar que comparte con otros del mismo autor es de estructura y reglas (CLAUDE.md,
+CHANGELOG en Keep a Changelog, DECISIONS append-only, fechas ISO, la voz), no de contenido
+cruzado: describir qué es otro repo envejece mal, no lo mantiene nadie e insinúa una
+dependencia que no existe. Los nombres que ya viven en el CHANGELOG son procedencia y
+quedan como están.
 
 ## Versión mostrada
 

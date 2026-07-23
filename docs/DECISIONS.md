@@ -7,6 +7,36 @@
 
 ---
 
+## 2026-07-23 — Se revierte la política de anclaje; cada repo se sostiene solo
+
+**Contexto:** la entrada de más abajo, del mismo 2026-07-23, adoptó la política de anclar
+y no borrar referencias cruzadas, y por eso se agregaron a `CLAUDE.md` las secciones "Repos
+hermanos" (una línea describiendo cada uno de los otros tres repos del autor) y
+"Referencias cruzadas". Esa recomendación salió mal. Describir otro repo envejece: la línea
+de TL-FCCU decía "Bash, documentado en inglés" y ese repo ya sumó un agente Java. Peor,
+las dos secciones insinúan una dependencia entre repos que no existe: el estándar que estos
+repos comparten es de estructura y reglas, no de contenido cruzado.
+
+**Decisión:** se borran las dos secciones de `CLAUDE.md` y se reemplazan por una regla
+corta: este repo no describe otros repos; el nombre de otro repo vale como procedencia
+histórica, nunca como información operativa, y ningún documento de acá depende de otro para
+entenderse. La autorización de escritura de doble repo de la entrada de abajo ya venció:
+esa excepción valía solo para su tarea, así que rige de nuevo un repo por sesión. El
+CHANGELOG no se reescribe: las menciones a TL-FCCU y MIDI-Scale-Trainer en v1.0 y v1.1 son
+procedencia y quedan.
+
+**Razón:** el objetivo es que cada repo se lea y se trabaje solo, sin abrir otro para
+entender el suyo. Una sección que describe repos ajenos empuja lo contrario y encima carga
+un dato que nadie mantiene y que ya quedó falso en menos de un día. La procedencia (de
+dónde salió una convención) sirve y no envejece porque no promete estado presente; la
+descripción operativa de otro repo sí.
+
+**Estado:** vigente. Reemplaza la entrada de abajo del 2026-07-23 "Autorización de escritura
+de doble repo, y política de referencias cruzadas", que queda como historia (append-only,
+no se edita).
+
+---
+
 ## 2026-07-23 — Autorización de escritura de doble repo, y política de referencias cruzadas
 
 **Contexto:** los dos repos Mimos (este y TdeA-Mimos-API-REST) borraron los nombres de
